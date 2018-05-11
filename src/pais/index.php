@@ -48,9 +48,7 @@ include_once INCLUDE_DIR . '/header.php';
 
 if (verificaPermissao('Administrador')) {
     $pais->find();
-    while ($pais->fetch()) {
-        echo $pais->nome.'<br>';
-    }
+    echo $pais->showAll();
 } else {
     //echo permissaoNegada();
 }
