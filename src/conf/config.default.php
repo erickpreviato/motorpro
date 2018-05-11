@@ -73,13 +73,13 @@ $PHP_SELF = $_SERVER['PHP_SELF'];
 require_once 'DB/DataObject.php';
 require_once 'HTML/Template/Sigma.php';
 
-include_once INCLUDE_DIR . '/controle.php';
+include_once INCLUDE_DIR . '/functions.php';
 
 include_once LIBRARY_DIR . '/PHPMailer/class.phpmailer.php';
-include_once LIBRARY_DIR . '/Requests.php';
+
 
 $options = &PEAR::getStaticProperty('DB_DataObject', 'options');
-$config = parse_ini_file('D:/ECon/motorpro/conf/vagasbd.ini', TRUE);
+$config = parse_ini_file('D:/ECon/motorpro/conf/motorprobd.ini', TRUE);
 $options = $config['DB_DataObject'];
 
 
@@ -94,6 +94,6 @@ header("Cache-Control: no-cache");
 //Desativar o Debug do PEAR 0-desativa e 1 seguintes aumenta ou diminui as informações do DEBUG
 DB_DataObject::debugLevel(0);
 
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 error_reporting(E_ALL);
 ?>
