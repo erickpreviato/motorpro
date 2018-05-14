@@ -36,7 +36,6 @@
  * @copyright EC.on Sistemas
  */
 include_once '../conf/config.default.php';
-
 verifica();
 
 include_once MODEL_DIR . '/Pais.php';
