@@ -53,7 +53,7 @@ define('SITE_KEY_RECAPTCHA', '6LeiCzIUAAAAABFNoZenCVegUG3OF8ql-Ef1Sv7s');
 define('SECRET_KEY_RECAPTCHA', '6LeiCzIUAAAAAEFptnyx4Y3dq2ildJeQN6GeQnLs');
 
 ################################################ EDITAR A URL ##############
-define('URL', "http://143.107.231.227:8080/motorpro/src");
+define('URL', "http://143.107.231.227:8080/motorpro");
 define('HOME', URL);
 define('IMAGE_URL', URL . "/view/img");
 define('CSS_URL', URL . "/view/css");

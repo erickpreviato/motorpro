@@ -38,3 +38,25 @@
         <![endif]-->
     </head>
     <body>
+
+        <form id="formModal" action="<?php echo $PHP_SELF; ?>" method="POST">
+            <div class="modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="box box-primary">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="addModalLabel">Titulo</h4>
+                            </div>
+                            <div class="modal-body">
+                                Conteudo
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+

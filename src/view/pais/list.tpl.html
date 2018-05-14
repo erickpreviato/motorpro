@@ -21,44 +21,45 @@
  */
 -->
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    $(".btn-form").on('click', function() {
-        $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
-        $("#addModal .modal-title").html("Visitantes ICMC");
-        $("#addModal").modal("show");
-        $.post("{PHP_SELF}", {showForm: $(this).val()}).done(function(data) {
-            $("#addModal").modal("hide");
-            $("#addModal .modal-content").html(data);
+        $(".btn-form").on('click', function() {
+            alert('teste');
+            $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
+            $("#addModal .modal-title").html("País");
             $("#addModal").modal("show");
+            $.post("{PHP_SELF}", {showForm: $(this).val()}).done(function(data) {
+                $("#addModal").modal("hide");
+                $("#addModal .modal-content").html(data);
+                $("#addModal").modal("show");
+            });
         });
-    });
+            
+        $(".alert .close").on('click', function(){
+            $(".content-header-alert").hide();
+        });
+            
+        $(".table tr td button").tooltip();
+        
+        <!-- BEGIN datatable --> 
+        $('.table').dataTable({
+            "columns": [
+                null,
+                null,
+                { "bSortable": false }
+                ],
+            "oLanguage": {
+                "sUrl": "{HOME}/view/language/pt_BR.txt"
+            },
+            "bStateSave": true,
+            "iCookieDuration": 3600,
+            "bSortClasses": true,
+            "sPaginationType": "full_numbers"
+        });
+        $('.dataTables_paginate').addClass("pagination");
+        <!-- END datatable --> 
     
-    $(".alert .close").on('click', function(){
-        $(".content-header-alert").hide();
     });
-    
-    $(".table tr td button").tooltip();
-
-    <!-- BEGIN datatable --> 
-    $('.table').dataTable({
-        "columns": [
-            null,
-            null,
-            { "bSortable": false }
-        ],
-        "oLanguage": {
-            "sUrl": "{HOME}/view/language/pt_BR.txt"
-        },
-        "bStateSave": true,
-        "iCookieDuration": 3600,
-        "bSortClasses": true,
-        "sPaginationType": "full_numbers"
-    });
-    $('.dataTables_paginate').addClass("pagination");
-    <!-- END datatable --> 
-    
-});
 </script>
 <section class="content-header">
     <h1>
@@ -77,7 +78,7 @@ $(document).ready(function() {
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                  <button class="btn btn-primary btn-form pull-right" value="-1">Novo</button>
+                    <button class="btn btn-primary btn-form pull-right" value="-1">Novo</button>
                 </div>
                 <div class="box-body">
                     <table class="table table-hover table-bordered">
