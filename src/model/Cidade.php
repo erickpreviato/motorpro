@@ -14,6 +14,7 @@ class Cidade extends DB_DataObject
     public $nome;                           // varchar(150) not_null
     public $ddd;                            // varchar(4)
     public $estado_id;                      // int(4) not_null
+    public $situacao;                       // char(1)
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE

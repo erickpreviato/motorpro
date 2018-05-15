@@ -13,3 +13,49 @@ function verifica(){
 function verificaPermissao($perfil = null) {
     return true;
 }
+
+function gerarAuditoria($nivel, $msg) {
+//    $auditoria = new Auditoria();
+//    $auditoria->setdata(date('Y-m-d H:i:s'));
+//    $auditoria->setip($_SERVER['REMOTE_ADDR']);
+//    $auditoria->setnivel($nivel);
+//    $auditoria->setmensagem($msg);
+//    $auditoria->insert();
+    return true;
+}
+
+function removeAcentos($str) {
+
+// assume $str esteja em UTF-8
+    $map = array(
+        'á' => 'a',
+        'à' => 'a',
+        'ã' => 'a',
+        'â' => 'a',
+        'é' => 'e',
+        'ê' => 'e',
+        'í' => 'i',
+        'ó' => 'o',
+        'ô' => 'o',
+        'õ' => 'o',
+        'ú' => 'u',
+        'ü' => 'u',
+        'ç' => 'c',
+        'Á' => 'A',
+        'À' => 'A',
+        'Ã' => 'A',
+        'Â' => 'A',
+        'É' => 'E',
+        'Ê' => 'E',
+        'Í' => 'I',
+        'Ó' => 'O',
+        'Ô' => 'O',
+        'Õ' => 'O',
+        'Ú' => 'U',
+        'Ü' => 'U',
+        'Ç' => 'C'
+    );
+
+    return strtr($str, $map); // funciona corretamente
+}
+
