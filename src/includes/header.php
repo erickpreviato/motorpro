@@ -12,24 +12,23 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="icon" href="<?php echo IMAGE_URL; ?>/favicon.ico">
 
-        <title>Sistema de Treinamento e Desenvolvimento</title>
+        <title>MotorPro - EC.on Sistemas</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/font-awesome.min.css">
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/ionicons.min.css">
-        <link rel="stylesheet" href="<?php echo CSS_URL; ?>/select2.min.css">
+        <link rel="stylesheet" href="<?php echo CSS_URL; ?>/select2.css">
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/AdminLTE.css">
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/datepicker.css">
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/dataTables.bootstrap.css">
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/skins/skin-blue.min.css">
-        <link rel="stylesheet" href="<?php echo CSS_URL; ?>/bootstrap3-wysihtml5.min.css">
         <link rel="stylesheet" href="<?php echo CSS_URL; ?>/motorpro.css">
 
         <!-- jQuery 2.1.4 -->
         <script src="<?php echo JS_URL; ?>/jquery.min.js"></script>
-
+        
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

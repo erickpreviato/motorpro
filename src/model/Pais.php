@@ -84,9 +84,12 @@ class Pais extends DB_DataObject {
 
         $tpl->setVariable('NOME', $this->nome);
         $tpl->setVariable('CODIGO', $this->codigo);
+        $tpl->setVariable('SITUACAO_'.$this->situacao, 'selected="selected"');
 
         $botao = (empty($this->id)) ? 'cadastrar' : 'editar';
         $tpl->setVariable('BOTAO', $botao);
+        
+        empty($this->id) ? $tpl->hideBlock("row_situacao") : $tpl->touchBlock("row_situacao");
 
         return $tpl->get();
     }

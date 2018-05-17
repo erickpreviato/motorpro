@@ -9,38 +9,38 @@
 
 if (isset($_POST['showForm'])) {
     
-    $pais = new Pais();
+    $estado = new Estado();
     if ($_POST['showForm'] > 0)
-        $pais->get($_POST['showForm']);
-    echo $pais->showForm();
+        $estado->get($_POST['showForm']);
+    echo $estado->showForm();
     die();
 }
 
 if (isset($_POST['showDetails'])) {
 
-    $pais = new Pais();
-    $pais->get($_POST['showDetails']);
-    echo $pais->showDetails();
+    $estado = new Estado();
+    $estado->get($_POST['showDetails']);
+    echo $estado->showDetails();
     die();
 
 }
 
 if (isset($_POST['showConflito'])) {
 
-    $pais = new Pais();
-    $pais->get($_POST['showConflito']);
-    echo $pais->showConflito();
+    $estado = new Estado();
+    $estado->get($_POST['showConflito']);
+    echo $estado->showConflito();
     die();
 
 }
 
 
 if (isset($_POST['cadastrar'])) {
-    $pais = new Pais();
-    $pais->setDados($_POST);
-    $pais->setsituacao('P');
+    $estado = new Estado();
+    $estado->setDados($_POST);
+    $estado->setsituacao('P');
 
-    if ($id = $pais->insert()) {
+    if ($id = $estado->insert()) {
         $_SESSION['msg'] = 'País cadastrado com succeso!';
         $_SESSION['t'] = 'success';
 
@@ -56,20 +56,20 @@ if (isset($_POST['cadastrar'])) {
 }
 
 if (isset($_POST['editar'])) {
-    $pais = new Pais();
-    $pais->get($_POST['id']);
-    $pais->setDados($_POST);
+    $estado = new Estado();
+    $estado->get($_POST['id']);
+    $estado->setDados($_POST);
 
-    if ($pais->update()) {
+    if ($estado->update()) {
         $_SESSION['msg'] = 'País alterado com succeso!';
         $_SESSION['t'] = 'success';
 
-        gerarAuditoria('INFORMACAO', 'Usuario '.$_SESSION['usuario'].' editou o país com id ('.$pais->getid().') ');
+        gerarAuditoria('INFORMACAO', 'Usuario '.$_SESSION['usuario'].' editou o país com id ('.$estado->getid().') ');
     } else {
         $_SESSION['msg'] = 'Erro ao editar país. Tente novamente mais tarde. <br />Caso o problema persista entre em contato.';
         $_SESSION['t'] = 'error';
 
-        gerarAuditoria('ERRO', 'Usuario '.$_SESSION['usuario'].' tentou editar o país com id ('.$pais->getid().') ');
+        gerarAuditoria('ERRO', 'Usuario '.$_SESSION['usuario'].' tentou editar o país com id ('.$estado->getid().') ');
     }
 
     header("Location: .");
@@ -82,14 +82,14 @@ if (isset($_POST['verifica'])) {
     
     $novo = removeAcentos(strtolower(str_replace(" ", "", $_POST['verifica'])));
     
-    $pais = new Pais();
-    $pais->find();
+    $estado = new Estado();
+    $estado->find();
     
-    while ($pais->fetch()) {
+    while ($estado->fetch()) {
        
-        $existente = removeAcentos(strtolower(str_replace(" ", "", $pais->nome)));
+        $existente = removeAcentos(strtolower(str_replace(" ", "", $estado->nome)));
         
-        if (($novo == $existente) && ($_POST['ID'] != $pais->id)) {
+        if ($novo == $existente) {
             $retorno = 'true';
         }
         

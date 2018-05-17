@@ -10,10 +10,15 @@
 <!-- AdminLTE App -->
 <script src="<?php echo JS_URL; ?>/app.min.js"></script>
 
+
 <script src="<?php echo JS_URL; ?>/jquery.dataTables.min.js"></script>
 <script src="<?php echo JS_URL; ?>/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo JS_URL; ?>/bootstrap-datepicker.js"></script>
-<script src="<?php echo JS_URL; ?>/bootstrap-datepicker.pt-BR.min.js"></script>
+<script src="<?php echo JS_URL;?>/bootstrap-datepicker.js"></script>
+<script src="<?php echo JS_URL;?>/bootstrap-datepicker.pt-BR.min.js"></script>
+<script src="<?php echo JS_URL;?>/jquery.maskedinput.js"></script>
+<script src="<?php echo JS_URL;?>/jquery.form.js"></script>
+<script src="<?php echo JS_URL;?>/select2.js"></script>
+
 </body>
 </html>
 

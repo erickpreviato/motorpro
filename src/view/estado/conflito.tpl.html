@@ -1,0 +1,93 @@
+<!--
+Copyright © 2017 Seção Técnica de Informática - STI / ICMC <sti@icmc.usp.br>
+
+Este arquivo é parte do programa "Vagas"
+
+Vagas é um software livre; você pode redistribuí-lo e/ou 
+modificá-lo dentro dos termos da Licença Pública Geral GNU como 
+publicada pela Fundação do Software Livre (FSF); na versão 3 da 
+Licença, ou (a seu critério) qualquer versão posterior.
+
+Este programa é distribuído na esperança de que possa ser  útil, 
+mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO
+a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
+Licença Pública Geral GNU para maiores detalhes.
+
+Você deve ter recebido uma cópia da Licença Pública Geral GNU junto
+com este programa, Se não, veja <http://www.gnu.org/licenses/>.
+-->
+
+<script>
+
+    $(document).ready(function () {
+
+        $(".badge").css('cursor', 'default');
+        $(".badge").hover(function () {
+            $(this).popover('show');
+        }, function () {
+            $(this).popover('hide');
+        });
+
+        $("#inputNome").focus();
+    });
+
+</script>
+
+<!-- Main content -->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+    <h4 class="modal-title" id="addModalLabel">Estado original <small>(Anteriormente cadastrado.)</small></h4>
+</div>
+<div class="modal-body modal-details">
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6">
+            <label for="inputNomeOriginal">Estado</label>
+            <p>{NOME_ORIGINAL}</p>
+        </div>
+    </div>
+</div>
+<div class="modal-header">
+    <h4 class="modal-title" id="addModalLabel">Estado adicionado</h4>
+    <p><span class="text-danger"><b>Compare</b></span>  - Adicionado recentemente est&aacute; semelhante ao original, verifique se &eacute; o mesmo.</p>
+</div>
+<div class="modal-body modal-details">
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6">
+            <label for="inputNome" class="text-danger">Estado </label>
+            <p>{NOME}</p>
+        </div>
+    </div>
+</div>
+{NONE}
+<!-- BEGIN afetados_row -->
+<div class="modal-header">
+    <h4 class="modal-title" id="addModalLabel">Afetados</h4>
+    <p>Ser&atilde;o alteradas automaticamente pelo sistema, recomendamos a confer&ecirc;ncia.</p>
+</div>
+<div class="modal-body">
+    <table class="table table-hover table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    Afetados
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- BEGIN table_row --> 
+            <tr>
+                <td>{AFETADOS}</td>
+            </tr>
+            <!-- END table_row -->
+        </tbody>
+    </table>
+</div>
+<!-- END afetados_row -->
+<div class="modal-footer">
+    <form id="form-recomendador" action="{PHP_SELF}" method="POST">
+        <input type="hidden" name="idOriginal" value="{ID_ORIGINAL}"/>
+        <button type="submit" class="btn btn-primary" name="ignorar" value="{ID}"><i class="fa fa-user-plus"></i> Ignorar, n&atilde;o &eacute; o mesmo</button>
+        <button type="submit" class="btn btn-info" name="resolver" value="{ID}"><i class="fa fa-cogs"></i> Resolver, e acertar relacionamentos</button>
+    </form>
+</div>
+
