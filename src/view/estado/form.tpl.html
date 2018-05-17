@@ -24,7 +24,7 @@
     $(document).ready(function () {
 
         $("#inputNome").keyup(function () {
-            $.post("{PHP_SELF}", {verifica: $("#inputNome").val()}).done(function (data) {
+            $.post("{PHP_SELF}", {verifica: $("#inputNome").val(), ID: $("#ID").val(), pais: $("#pais").val()}).done(function (data) {
                 if (data == 'true') {
                     $(".existe").removeClass('hide');
                 } else {
@@ -47,7 +47,7 @@
     <br />
     <div class="form-group">
         <label for="inputPais">Selecione o pa&iacute;s: </label>
-        <select class="form-control" name="pais" >
+        <select class="form-control" id="pais" name="pais" >
             {OPTION}
         </select>
     </div>

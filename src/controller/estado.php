@@ -89,7 +89,7 @@ if (isset($_POST['verifica'])) {
        
         $existente = removeAcentos(strtolower(str_replace(" ", "", $estado->nome)));
         
-        if ($novo == $existente) {
+        if (($novo == $existente) && ($_POST['pais'] == $estado->pais_id)) {
             $retorno = 'true';
         }
         

@@ -51,7 +51,7 @@ class Estado extends DB_DataObject {
             $tpl->setVariable('NOME', 'pais');
             $tpl->setVariable('VALOR', $pais->nome);
             $tpl->setVariable('SELECTED', $pais->id == $ID ? 'selected="selected"' : '');
-            
+
             $tpl->parse('option');
         }
 
@@ -185,8 +185,10 @@ class Estado extends DB_DataObject {
             $obj = removeAcentos(strtolower(str_replace(" ", "", $objeto->getnome())));
 
             if ($objeto->situacao == "P") {
-                if (($ps == $obj) && ($estado->getid() != $objeto->getid())) {
-                    $retorno = true;
+                if ($objeto->pais_id == $estado->pais_id) {
+                    if (($ps == $obj) && ($estado->getid() != $objeto->getid())) {
+                        $retorno = true;
+                    }
                 }
             }
         }
