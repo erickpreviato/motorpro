@@ -5,7 +5,7 @@
 
   Este arquivo é parte do programa "Motor Pro"
 
-  Vagas é um software livre; você pode redistribuí-lo e/ou
+  MotorPro é um software livre; você pode redistribuí-lo e/ou
   modificá-lo dentro dos termos da Licença Pública Geral GNU como
   publicada pela Fundação do Software Livre (FSF); na versão 3 da
   Licença, ou (a seu critério) qualquer versão posterior.

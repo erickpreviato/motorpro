@@ -31,26 +31,26 @@ class Estado extends DB_DataObject {
                 break;
         }
     }
+    
+    public static function get_options($ID = null) {
 
-    public function get_options($ID = null) {
-
-        $tpl = new HTML_Template_Sigma(VIEW_DIR . "/pais");
+        $tpl = new HTML_Template_Sigma(VIEW_DIR . "/estado");
         $pagina = 'option.tpl.html';
         $tpl->loadTemplateFile($pagina);
 
         $tpl->setVariable('PHP_SELF', $_SERVER['REQUEST_URI']);
         $tpl->setVariable('HOME', HOME);
 
-        $pais = new Pais();
-        $pais->setsituacao('A');
-        $pais->find();
+        $estado = new Estado();
+        $estado->setsituacao('A');
+        $estado->find();
 
-        while ($pais->fetch()) {
+        while ($estado->fetch()) {
 
-            $tpl->setVariable('ID', $pais->id);
-            $tpl->setVariable('NOME', 'pais');
-            $tpl->setVariable('VALOR', $pais->nome);
-            $tpl->setVariable('SELECTED', $pais->id == $ID ? 'selected="selected"' : '');
+            $tpl->setVariable('ID', $estado->id);
+            $tpl->setVariable('NOME', 'estado');
+            $tpl->setVariable('VALOR', $estado->nome);
+            $tpl->setVariable('SELECTED', $estado->id == $ID ? 'selected="selected"' : '');
 
             $tpl->parse('option');
         }
@@ -111,7 +111,7 @@ class Estado extends DB_DataObject {
 
         $tpl->setVariable('NOME', $this->nome);
         $tpl->setVariable('SIGLA', $this->sigla);
-        $tpl->setVariable('OPTION', $this->get_options($this->pais_id));
+        $tpl->setVariable('OPTION', Pais::get_options($this->pais_id));
         $tpl->setVariable('SITUACAO_' . $this->situacao, 'selected="selected"');
 
         $botao = (empty($this->id)) ? 'cadastrar' : 'editar';

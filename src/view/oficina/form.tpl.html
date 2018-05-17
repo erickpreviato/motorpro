@@ -1,0 +1,57 @@
+<!--
+/*
+ * 
+ * Copyright © 2018 EC.on Sistemas <econ@econ.com.br>
+ * 
+ * Este arquivo é parte do programa "Motor Pro"
+ * 
+ * Sistema MotorPro é um software livre; você pode redistribuí-lo e/ou 
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
+ * publicada pela Fundação do Software Livre (FSF); na versão 3 da 
+ * Licença, ou (a seu critério) qualquer versão posterior.
+ * 
+ * Este programa é distribuído na esperança de que possa ser  útil, 
+ * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO
+ * a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
+ * Licença Pública Geral GNU para maiores detalhes.
+ * 
+ * Você deve ter recebido uma cópia da Licença Pública Geral GNU junto
+ * com este programa, Se não, veja <http://www.gnu.org/licenses/>.
+ * 
+ */
+-->
+<script>
+    $(document).ready(function () {
+
+        $("#inputNome").focus();
+    });
+</script>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="addModalLabel">Cadastro de oficina</h4>
+    <input type="hidden" name="id" value="{ID}" />
+</div>
+<div class="modal-body">
+    <p><span class="text-danger"><b>*</b></span> Campos obrigatórios</p>
+    <br />
+    <div class="form-group">
+        <label for="inputNome">Nome <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputNome" name="nome" value="{NOME}" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="inputRazaoSocial">Raz&atilde;o Social <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputRazaoSocial" name="razao_social" value="{RAZAO_SOCIAL}" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="inputCNPJ">CNPJ <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputCNPJ" name="cnpj" value="{CNPJ}" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="inputInscricaoEstadual">Inscri&ccedil;&atilde;o Estadual <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputInscricaoEstadual" name="inscricao_estadual" value="{INSCRICAO_ESTADUAL}" required="required" />
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+    <button type="submit" class="btn btn-primary" name="{BOTAO}">Salvar</button>
+</div>

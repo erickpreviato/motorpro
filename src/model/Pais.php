@@ -30,6 +30,32 @@ class Pais extends DB_DataObject {
                 break;
         }
     }
+    
+    public static function get_options($ID = null) {
+
+        $tpl = new HTML_Template_Sigma(VIEW_DIR . "/pais");
+        $pagina = 'option.tpl.html';
+        $tpl->loadTemplateFile($pagina);
+
+        $tpl->setVariable('PHP_SELF', $_SERVER['REQUEST_URI']);
+        $tpl->setVariable('HOME', HOME);
+
+        $pais = new Pais();
+        $pais->setsituacao('A');
+        $pais->find();
+
+        while ($pais->fetch()) {
+
+            $tpl->setVariable('ID', $pais->id);
+            $tpl->setVariable('NOME', 'pais');
+            $tpl->setVariable('VALOR', $pais->nome);
+            $tpl->setVariable('SELECTED', $pais->id == $ID ? 'selected="selected"' : '');
+
+            $tpl->parse('option');
+        }
+
+        return $tpl->get();
+    }
 
     public function showAll() {
 

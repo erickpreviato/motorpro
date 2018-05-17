@@ -3,9 +3,9 @@
  * 
  * Copyright © 2018 EC.on Sistemas <econ@econ.com.br>
  * 
- * Este arquivo é parte do programa "Sistema de T&D"
+ * Este arquivo é parte do programa "Motor Pro"
  * 
- * Sistema de T&D é um software livre; você pode redistribuí-lo e/ou 
+ * Sistema MotorPro é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
  * publicada pela Fundação do Software Livre (FSF); na versão 3 da 
  * Licença, ou (a seu critério) qualquer versão posterior.
@@ -21,32 +21,30 @@
  */
 -->
 <script>
-$(document).ready(function() {
-    
-});
+    $(document).ready(function () {
+
+        $("#inputNome").focus();
+    });
 </script>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="addModalLabel">Estados</h4>
+    <h4 class="modal-title" id="addModalLabel">Cadastro de funcionário</h4>
+    <input type="hidden" name="id" value="{ID}" />
 </div>
-<div class="modal-body modal-details">   
+<div class="modal-body">
+    <p><span class="text-danger"><b>*</b></span> Campos obrigatórios</p>
+    <br />
     <div class="form-group">
-        <h3>Dados do Estado </h3>
+        <label for="inputOficina">Oficina</label>
+        <p>{OFICINA}</p>
+    </div>
+    <div class="form-group">
+        <label for="inputNome">Nome <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputNome" name="nome" value="{NOME}" required="required" />
     </div>
 
-    <div class="form-group">
-        <label for="inputSigla">Sigla</label>
-        <p>{SIGLA}</p>
-    </div>
-    <div class="form-group">
-        <label for="inputNome">Nome</label>
-        <p>{NOME}</p>
-    </div>
-    <div class="form-group">
-        <label for="inputPais">Pa&iacute;s</label>
-        <p>{PAIS}</p>
-    </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+    <button type="submit" class="btn btn-primary" name="{BOTAO}">Salvar</button>
 </div>

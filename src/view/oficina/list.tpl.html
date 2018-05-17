@@ -1,0 +1,149 @@
+<!--
+/*
+ * 
+ * Copyright © 2018 EC.on Sistemas <econ@econ.com.br>
+ * 
+ * Este arquivo é parte do programa "Motor Pro"
+ * 
+ * Sistema MotorPro é um software livre; você pode redistribuí-lo e/ou 
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
+ * publicada pela Fundação do Software Livre (FSF); na versão 3 da 
+ * Licença, ou (a seu critério) qualquer versão posterior.
+ * 
+ * Este programa é distribuído na esperança de que possa ser  útil, 
+ * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO
+ * a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
+ * Licença Pública Geral GNU para maiores detalhes.
+ * 
+ * Você deve ter recebido uma cópia da Licença Pública Geral GNU junto
+ * com este programa, Se não, veja <http://www.gnu.org/licenses/>.
+ * 
+ */
+-->
+<script>
+    $(document).ready(function () {
+
+        $(".btn-form").on('click', function () {
+            $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
+            $("#addModal .modal-title").html("Oficina");
+            $("#addModal").modal("show");
+            $.post("{PHP_SELF}", {showForm: $(this).val()}).done(function (data) {
+                $("#addModal").modal("hide");
+                $("#addModal .modal-content").html(data);
+                $("#addModal").modal("show");
+            });
+        });
+
+        $(".btn-details").on('click', function () {
+            $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
+            $("#addModal .modal-title").html("Oficina");
+            $("#addModal").modal("show");
+            $.post("{PHP_SELF}", {showDetails: $(this).val()}).done(function (data) {
+                $("#addModal").modal("hide");
+                $("#addModal .modal-content").html(data);
+                $("#addModal").modal("show");
+            });
+        });
+        
+        $(".btn-conflito").on('click', function() {
+            $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
+            $("#addModal .modal-title").html("Oficina");
+            $("#addModal").modal("show");
+            $.post("{PHP_SELF}", {showConflito: $(this).val()}).done(function(data) {
+                $("#addModal").modal("hide");
+                $("#addModal .modal-content").html(data);
+                $("#addModal").modal("show");
+            });
+        });
+
+
+        $(".alert .close").on('click', function () {
+            $(".content-header-alert").hide();
+        });
+
+        $(".table tr td button").tooltip();
+
+        <!-- BEGIN datatable --> 
+        $('.table').dataTable({
+            "columns": [
+                null,
+                null,
+                null,
+                null,
+                {"bSortable": false}
+            ],
+            "oLanguage": {
+                "sUrl": "{HOME}/view/language/pt_BR.txt"
+            },
+            "bStateSave": true,
+            "iCookieDuration": 3600,
+            "bSortClasses": true,
+            "sPaginationType": "full_numbers"
+        });
+        $('.dataTables_paginate').addClass("pagination");
+        <!-- END datatable --> 
+
+    });
+</script>
+<section class="content-header">
+    <h1>
+        Controle de oficinas
+        <small>EC.on Sistemas.</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{HOME}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Controle de oficinas</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <button class="btn btn-primary btn-form pull-right" value="-1">Novo</button>
+                </div>
+                <div class="box-body">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Raz&atilde;o Social
+                                </th>
+                                <th>
+                                    CNPJ
+                                </th>
+                                <th>
+                                    Inscri&ccedil;&atilde;o estadual
+                                </th>
+                                <th class="text-center col-xs-2">
+                                    Ações
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- BEGIN table_row -->
+                            <tr>
+                                <td>{NOME}</td>
+                                <td>{RAZAO_SOCIAL}</td>
+                                <td>{CNPJ}</td>
+                                <td>{INSCRICAO_ESTADUAL}</td>
+                                <td class="text-center">{ACOES}</td>
+                            </tr>
+                            <!-- END table_row -->
+                            <!-- BEGIN row_none --> 
+                            <tr>
+                                <td colspan="5">{NONE}</td>
+                            </tr>
+                            <!-- END row_none -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
