@@ -19,6 +19,14 @@ class Estado extends DB_DataObject {
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    public static function get_estado($ID = null, $campo = null) {
+
+        $estado = new Estado();
+        $estado->get($ID);
+
+        return $estado->$campo;
+    }
+    
     public static function get_situacao($situacao) {
 
         switch ($situacao) {
@@ -31,8 +39,8 @@ class Estado extends DB_DataObject {
                 break;
         }
     }
-    
-    public static function get_options($ID = null) {
+
+    public static function get_options($ID = null, $pais = null) {
 
         $tpl = new HTML_Template_Sigma(VIEW_DIR . "/estado");
         $pagina = 'option.tpl.html';
@@ -43,6 +51,11 @@ class Estado extends DB_DataObject {
 
         $estado = new Estado();
         $estado->setsituacao('A');
+
+        if ($pais) {
+            $estado->setpais_id($pais);
+        }
+
         $estado->find();
 
         while ($estado->fetch()) {

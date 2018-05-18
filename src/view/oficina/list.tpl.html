@@ -33,7 +33,7 @@
                 $("#addModal").modal("show");
             });
         });
-
+        
         $(".btn-details").on('click', function () {
             $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
             $("#addModal .modal-title").html("Oficina");
@@ -56,6 +56,16 @@
             });
         });
 
+        $(".btn-form-endereco").on('click', function () {
+            $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
+            $("#addModal .modal-title").html("Endereço");
+            $("#addModal").modal("show");
+            $.post("{PHP_SELF}", {showFormEndereco: $(this).val()}).done(function (data) {
+                $("#addModal").modal("hide");
+                $("#addModal .modal-content").html(data);
+                $("#addModal").modal("show");
+            });
+        });
 
         $(".alert .close").on('click', function () {
             $(".content-header-alert").hide();

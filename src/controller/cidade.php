@@ -99,5 +99,12 @@ if (isset($_POST['verifica'])) {
     die();
 }
 
+if (isset($_POST['filtraCidade'])) {
+
+    $cidade = new Cidade();
+    echo ($cidade->get_options(null, $_POST['filtraCidade']));
+    die();
+}
+
 
 

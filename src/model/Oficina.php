@@ -73,6 +73,7 @@ class Oficina extends DB_DataObject {
 
 
             $acao = '<button data-toggle="tooltip" title="Editar" value="' . $this->id . '" class="btn btn-xs btn-default btn-form"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+            $acao .= '<button data-toggle="tooltip" title="Endereço" value="' . $this->id . '" class="btn btn-xs btn-default btn-form-endereco"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></button>';
 
             $acao .= '<button data-toggle="tooltip" title="Ver mais detalhes" value="' . $this->id . '" class="btn btn-xs btn-default btn-details"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button> ';
             $tpl->setVariable('ACOES', $acao);

@@ -6,6 +6,11 @@
  * and open the template in the editor.
  */
 
+include_once MODEL_DIR . '/Endereco.php';
+include_once MODEL_DIR . '/Pais.php';
+include_once MODEL_DIR . '/Estado.php';
+include_once MODEL_DIR . '/Cidade.php';
+
 function verifica(){
     return true;
 }

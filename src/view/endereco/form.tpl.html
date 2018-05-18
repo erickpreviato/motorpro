@@ -1,0 +1,145 @@
+<!--
+/*
+ * 
+ * Copyright © 2018 EC.on Sistemas <econ@econ.com.br>
+ * 
+ * Este arquivo é parte do programa "Motor Pro"
+ * 
+ * Sistema MotorPro é um software livre; você pode redistribuí-lo e/ou 
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
+ * publicada pela Fundação do Software Livre (FSF); na versão 3 da 
+ * Licença, ou (a seu critério) qualquer versão posterior.
+ * 
+ * Este programa é distribuído na esperança de que possa ser  útil, 
+ * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO
+ * a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
+ * Licença Pública Geral GNU para maiores detalhes.
+ * 
+ * Você deve ter recebido uma cópia da Licença Pública Geral GNU junto
+ * com este programa, Se não, veja <http://www.gnu.org/licenses/>.
+ * 
+ */
+-->
+<script>
+
+    function get_estado(pais, id, limpar) {
+        $.post("/motorpro/estado/", {filtraEstado: pais}).done(function (data) {
+            $("#" + id).html(data);
+            $("#" + id).select2("val", "0");
+            get_cidade(0, limpar);
+        });
+
+    }
+
+    function get_cidade(estado, id) {
+        $.post("/motorpro/cidade/", {filtraCidade: estado}).done(function (data) {
+            $("#" + id).html(data);
+            $("#" + id).select2("val", "0");
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#inputNome").keyup(function () {
+            $.post("{PHP_SELF}", {verifica: $("#inputNome").val(), ID: $("#ID").val(), estado: $("#estado").val()}).done(function (data) {
+                if (data == 'true') {
+                    $(".existe").removeClass('hide');
+                } else {
+                    $(".existe").addClass('hide');
+                }
+            });
+        });
+
+        $(".cadastrar").on('click', function () {
+//            $("#addModal .modal-body").html('<center><img src="{HOME}/view/img/carregando.gif" /></center>');
+//            $("#addModal .modal-title").html("Endereço");
+            $("#addModal").modal("hide");
+            $.post("{PHP_SELF}", {salvar_endereco: true, oficina: $('#idOficina').val(), endereco: $('#id').val(), dados: $('#form-oficina').serializeArray()}).done(function (data) {
+                alert(data);
+//                $("#addModal").modal("hide");
+//                $("#addModal .modal-content").html(data);
+//                $("#addModal").modal("show");
+            });
+        });
+
+
+
+
+        $("#inputNome").focus();
+    });
+</script>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="addModalLabel">Cadastro de Endere&ccedil;o</h4>
+    <input type="hidden" name="id" id="id" value="{ID}" />
+    <input type="hidden" name="idOficina" id="idOficina" value="{OFICINA}" />
+</div>
+<form action="{PHP_SELF}" method="POST" id="form-oficina">
+    <div class="modal-body">
+        <p><span class="text-danger"><b>*</b></span> Campos obrigatórios</p>
+        <br />
+        <div class="form-group">
+            <label for="inputTipo">Selecione o tipo: </label>
+            <select class="form-control" id="tipo" name="tipo" >
+                <option value="">Selecione</option>
+                <option value="C" {SELECTED_C} name="tipo"> Comercial</option>
+                <option value="R" {SELECTED_R} name="tipo"> Residencial</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="form-group">
+                    <label for="inputLogradouro">Logradouro <span class="text-danger"><b>*</b></span></label>
+                    <input type="text" class="form-control" id="inputLogradouro" name="logradouro" value="{LOGRADOURO}"   />
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="inputNumero">N&uacute;mero <span class="text-danger"><b>*</b></span></label>
+                    <input type="text" class="form-control" id="inputNumero" name="numero" value="{NUMERO}"   />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="form-group">
+                    <label for="inputBairro">Bairro <span class="text-danger"><b>*</b></span></label>
+                    <input type="text" class="form-control" id="inputBairro" name="bairro" value="{BAIRRO}"   />
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="inputCep">CEP <span class="text-danger"><b>*</b></span></label>
+                    <input type="text" class="form-control" id="inputCep" name="cep" value="{CEP}"   />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPais">Selecione o país: </label>
+            <select class="form-control" id="pais" onchange="get_estado(this.value, 'estado', 'cidade')">
+                {OPTION_PAIS}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputEstado">Selecione o estado: </label>
+            <select class="form-control" id="estado" onchange="get_cidade(this.value, 'cidade')">
+                {OPTION_ESTADO}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputCidade">Selecione o cidade: </label>
+            <select class="form-control" id="cidade" name="cidade_id" >
+                {OPTION_CIDADE}
+            </select>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="cadastrar btn btn-primary" name="{BOTAO}">Salvar</button>
+    </div>
+</form>

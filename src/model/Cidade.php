@@ -19,6 +19,14 @@ class Cidade extends DB_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    public static function get_cidade($ID = null, $campo = null) {
+        
+        $cidade = new Cidade();
+        $cidade->get($ID);
+        
+        return $cidade->$campo;
+    }
+    
     
     public static function get_situacao($situacao) {
 
@@ -33,7 +41,7 @@ class Cidade extends DB_DataObject
         }
     }
 
-    public function get_options($ID = null) {
+    public static function get_options($ID = null, $estado = null) {
 
         $tpl = new HTML_Template_Sigma(VIEW_DIR . "/estado");
         $pagina = 'option.tpl.html';
@@ -42,16 +50,21 @@ class Cidade extends DB_DataObject
         $tpl->setVariable('PHP_SELF', $_SERVER['REQUEST_URI']);
         $tpl->setVariable('HOME', HOME);
 
-        $estado = new Estado();
-        $estado->setsituacao('A');
-        $estado->find();
+        $cidade = new Cidade();
+        $cidade->setsituacao('A');
+        
+        if ($estado) {
+            $cidade->setestado_id($estado);
+        }
+        
+        $cidade->find();
 
-        while ($estado->fetch()) {
+        while ($cidade->fetch()) {
 
-            $tpl->setVariable('ID', $estado->id);
-            $tpl->setVariable('NOME', 'estado');
-            $tpl->setVariable('VALOR', $estado->nome);
-            $tpl->setVariable('SELECTED', $estado->id == $ID ? 'selected="selected"' : '');
+            $tpl->setVariable('ID', $cidade->id);
+            $tpl->setVariable('NOME', 'cidade');
+            $tpl->setVariable('VALOR', $cidade->nome);
+            $tpl->setVariable('SELECTED', $cidade->id == $ID ? 'selected="selected"' : '');
 
             $tpl->parse('option');
         }

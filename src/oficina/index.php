@@ -39,7 +39,8 @@ include_once '../conf/config.default.php';
 verifica();
 
 include_once MODEL_DIR . '/Oficina.php';
-include_once MODEL_DIR . '/Pais.php';
+include_once MODEL_DIR . '/Oficina_endereco.php';
+
 
 include_once CONTROLLER_DIR . '/oficina.php';
 

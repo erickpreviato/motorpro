@@ -99,5 +99,11 @@ if (isset($_POST['verifica'])) {
     die();
 }
 
+if (isset($_POST['filtraEstado'])) {
+    $estado = new Estado();
+    echo ($estado->get_options(null, $_POST['filtraEstado']));
+    die();
+}
+
 
 
