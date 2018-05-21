@@ -21,7 +21,7 @@ class Endereco extends DB_DataObject {
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    public function showForm() {
+    public function showForm($oficina = null) {
 
         $tpl = new HTML_Template_Sigma(VIEW_DIR . "/endereco");
         $pagina = 'form.tpl.html';
@@ -31,15 +31,16 @@ class Endereco extends DB_DataObject {
         $tpl->setVariable('HOME', HOME);
 
         $tpl->setVariable('ID', $this->id);
+        $tpl->setVariable('OFICINA', $oficina);
         $tpl->setVariable('TIPO_' . $this->tipo, 'selected="selected"');
         $tpl->setVariable('LOGRADOURO', $this->logradouro);
         $tpl->setVariable('NUMERO', $this->numero);
         $tpl->setVariable('BAIRRO', $this->bairro);
         $tpl->setVariable('CEP', $this->cep);
-        $tpl->setVariable('OPTION_CIDADE', Cidade::get_options($this->cidade_id));
-        $idCidade = Cidade::get_cidade($this->cidade_id, 'estado_id');
-        $tpl->setVariable('OPTION_ESTADO', Estado::get_options($idCidade));
-        $tpl->setVariable('OPTION_PAIS', Pais::get_options(Estado::get_estado($idCidade, 'id')));
+        $tpl->setVariable('OPTION_CIDADE', Cidade::get_options($this->cidade_id));       
+        $idEstado = Cidade::get_cidade($this->cidade_id, 'estado_id');
+        $tpl->setVariable('OPTION_ESTADO', Estado::get_options($idEstado));
+        $tpl->setVariable('OPTION_PAIS', Pais::get_options(Estado::get_estado($idEstado, 'pais_id')));
 
         $botao = (empty($this->id)) ? 'cadastrar' : 'editar';
         $tpl->setVariable('BOTAO', $botao);

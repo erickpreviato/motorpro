@@ -75,11 +75,16 @@ if (isset($_POST['editar'])) {
 
 
 if (isset($_POST['showFormEndereco'])) {
-
+    
+    $oficina = $_POST['showFormEndereco'];
+    
     $endereco = new Endereco();
-    if ($_POST['showFormEndereco'] > 0)
-        $endereco->get($_POST['showFormEndereco']);
-    echo $endereco->showForm();
+    if ($oficina > 0) {
+        $oficina_endereco = Oficina_endereco::get_endereco($oficina);
+        $endereco->get($oficina_endereco);
+    }
+
+    echo $endereco->showForm($oficina);
     die();
 }
 
@@ -88,7 +93,7 @@ if (isset($_POST['salvar_endereco'])) {
     $endereco = Endereco::salva($_POST['dados']);
     $oficina_endereco = Oficina_endereco::salvar($_POST['oficina'], $endereco);
     
-    echo ($endereco.' - '.$oficina_endereco);
+    echo ($oficina_endereco);
     
     die();
 }
