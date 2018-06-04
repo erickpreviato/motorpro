@@ -1,0 +1,86 @@
+<!--
+/*
+ * 
+ * Copyright © 2018 EC.on Sistemas <econ@econ.com.br>
+ * 
+ * Este arquivo é parte do programa "Motor Pro"
+ * 
+ * Sistema MotorPro é um software livre; você pode redistribuí-lo e/ou 
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
+ * publicada pela Fundação do Software Livre (FSF); na versão 3 da 
+ * Licença, ou (a seu critério) qualquer versão posterior.
+ * 
+ * Este programa é distribuído na esperança de que possa ser  útil, 
+ * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO
+ * a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
+ * Licença Pública Geral GNU para maiores detalhes.
+ * 
+ * Você deve ter recebido uma cópia da Licença Pública Geral GNU junto
+ * com este programa, Se não, veja <http://www.gnu.org/licenses/>.
+ * 
+ */
+-->
+<script>
+    $(document).ready(function () {
+
+        $("#inputNome").keyup(function () {
+            $.post("{PHP_SELF}", {verifica: $("#inputNome").val(), ID: $("#ID").val(), estado: $("#estado").val()}).done(function (data) {
+                if (data == 'true') {
+                    $(".existe").removeClass('hide');
+                } else {
+                    $(".existe").addClass('hide');
+                }
+            });
+        });
+
+
+        $("#inputNome").focus();
+    });
+</script>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="addModalLabel">Cadastro de ve&iacute;culos</h4>
+    <input type="hidden" name="id" value="{ID}" />
+</div>
+<div class="modal-body">
+    <p><span class="text-danger"><b>*</b></span> Campos obrigatórios</p>
+    <br />
+    <div class="form-group">
+        <label for="inputTipo">Selecione o tipo: </label>
+        <select class="form-control" id="tipo_veiculo_id" name="tipo_veiculo_id" >
+            {OPTION}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="inputPlaca">Placa <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputPlaca" name="placa" value="{PLACA}" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="inputKM">KM <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputKM" name="km" value="{KM}" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="inputCor">Cor predominante <span class="text-danger"><b>*</b></span></label>
+        <input type="text" class="form-control" id="inputCor" name="cor" value="{COR}" required="required" />
+    </div>
+
+    <div class="form-group existe hide">
+        <p><b class="text-danger">Aten&ccedil;&atilde;o</b> Esse ve&iacute;culo j&aacute; consta em nossa base de dados. Voc&ecirc; poder&aacute; adicionar, mas verifique a possibilidade da utiliza&ccedil;&atilde;o do existente. </p>
+    </div>
+
+    <!-- BEGIN row_situacao -->
+    <div class="form-group">
+        <label for="inputSituacao">Selecione a Situa&ccedil;&atilde;o: </label>
+        <select class="form-control" name="situacao" >
+            <option value="">Selecione</option>
+            <option {SITUACAO_A} name="situacao" value="A">Ativo</option>
+            <option {SITUACAO_P} name="situacao" value="P">Pendente</option>
+        </select>
+    </div>
+    <!-- END row_situacao -->
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+    <button type="submit" class="btn btn-primary" name="{BOTAO}">Salvar</button>
+</div>

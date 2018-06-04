@@ -15,4 +15,30 @@ class Modelo extends DB_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+    
+    
+    public static function get_options($ID = null) {
+
+        $tpl = new HTML_Template_Sigma(VIEW_DIR . "/modelo");
+        $pagina = 'option.tpl.html';
+        $tpl->loadTemplateFile($pagina);
+
+        $tpl->setVariable('PHP_SELF', $_SERVER['REQUEST_URI']);
+        $tpl->setVariable('HOME', HOME);
+
+        $modelo = new Modelo();
+        $modelo->find();
+
+        while ($modelo->fetch()) {
+
+            $tpl->setVariable('ID', $modelo->id);
+            $tpl->setVariable('NOME', 'modelo');
+            $tpl->setVariable('VALOR', $modelo->marca_id);
+            $tpl->setVariable('SELECTED', $modelo->id == $ID ? 'selected="selected"' : '');
+
+            $tpl->parse('option');
+        }
+
+        return $tpl->get();
+    }
 }
