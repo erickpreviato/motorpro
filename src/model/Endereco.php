@@ -30,20 +30,25 @@ class Endereco extends DB_DataObject {
         $tpl->setVariable('PHP_SELF', $_SERVER['REQUEST_URI']);
         $tpl->setVariable('HOME', HOME);
 
-        $tpl->setVariable('ID', $this->id);
-        $tpl->setVariable('OFICINA', $oficina);
-        $tpl->setVariable('TIPO_' . $this->tipo, 'selected="selected"');
-        $tpl->setVariable('LOGRADOURO', $this->logradouro);
-        $tpl->setVariable('NUMERO', $this->numero);
-        $tpl->setVariable('BAIRRO', $this->bairro);
-        $tpl->setVariable('CEP', $this->cep);
-        $tpl->setVariable('OPTION_CIDADE', Cidade::get_options($this->cidade_id));       
-        $idEstado = Cidade::get_cidade($this->cidade_id, 'estado_id');
+        if ($this->id) {
+            $tpl->setVariable('ID', $this->id);
+            $tpl->setVariable('OFICINA', $oficina);
+            $tpl->setVariable('TIPO_' . $this->tipo, 'selected="selected"');
+            $tpl->setVariable('LOGRADOURO', $this->logradouro);
+            $tpl->setVariable('NUMERO', $this->numero);
+            $tpl->setVariable('BAIRRO', $this->bairro);
+            $tpl->setVariable('CEP', $this->cep);
+        }
+        
+        $tpl->setVariable('OPTION_CIDADE', Cidade::get_options($this->cidade_id));
+
+        $idEstado = $this->cidade_id ? Cidade::get_cidade($this->cidade_id, 'estado_id') : null;
         $tpl->setVariable('OPTION_ESTADO', Estado::get_options($idEstado));
         $tpl->setVariable('OPTION_PAIS', Pais::get_options(Estado::get_estado($idEstado, 'pais_id')));
 
         $botao = (empty($this->id)) ? 'cadastrar' : 'editar';
         $tpl->setVariable('BOTAO', $botao);
+
 
         return $tpl->get();
     }

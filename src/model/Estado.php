@@ -21,12 +21,16 @@ class Estado extends DB_DataObject {
 
     public static function get_estado($ID = null, $campo = null) {
 
-        $estado = new Estado();
-        $estado->get($ID);
+        return false;
 
-        return $estado->$campo;
+        if ($ID) {
+            $estado = new Estado();
+            $estado->get($ID);
+
+            return $estado->$campo;
+        }
     }
-    
+
     public static function get_situacao($situacao) {
 
         switch ($situacao) {

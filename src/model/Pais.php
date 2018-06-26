@@ -30,7 +30,7 @@ class Pais extends DB_DataObject {
                 break;
         }
     }
-    
+
     public static function get_options($ID = null) {
 
         $tpl = new HTML_Template_Sigma(VIEW_DIR . "/pais");
@@ -49,7 +49,9 @@ class Pais extends DB_DataObject {
             $tpl->setVariable('ID', $pais->id);
             $tpl->setVariable('NOME', 'pais');
             $tpl->setVariable('VALOR', $pais->nome);
-            $tpl->setVariable('SELECTED', $pais->id == $ID ? 'selected="selected"' : '');
+            if ($ID) {
+                $tpl->setVariable('SELECTED', $pais->id == $ID ? 'selected="selected"' : '');
+            }
 
             $tpl->parse('option');
         }
@@ -110,11 +112,11 @@ class Pais extends DB_DataObject {
 
         $tpl->setVariable('NOME', $this->nome);
         $tpl->setVariable('CODIGO', $this->codigo);
-        $tpl->setVariable('SITUACAO_'.$this->situacao, 'selected="selected"');
+        $tpl->setVariable('SITUACAO_' . $this->situacao, 'selected="selected"');
 
         $botao = (empty($this->id)) ? 'cadastrar' : 'editar';
         $tpl->setVariable('BOTAO', $botao);
-        
+
         empty($this->id) ? $tpl->hideBlock("row_situacao") : $tpl->touchBlock("row_situacao");
 
         return $tpl->get();

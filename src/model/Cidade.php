@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Table Definition for cidade
  */
 require_once 'DB/DataObject.php';
 
-class Cidade extends DB_DataObject 
-{
+class Cidade extends DB_DataObject {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
 
@@ -20,14 +20,13 @@ class Cidade extends DB_DataObject
     ###END_AUTOCODE
 
     public static function get_cidade($ID = null, $campo = null) {
-        
+
         $cidade = new Cidade();
         $cidade->get($ID);
-        
+
         return $cidade->$campo;
     }
-    
-    
+
     public static function get_situacao($situacao) {
 
         switch ($situacao) {
@@ -52,11 +51,11 @@ class Cidade extends DB_DataObject
 
         $cidade = new Cidade();
         $cidade->setsituacao('A');
-        
+
         if ($estado) {
             $cidade->setestado_id($estado);
         }
-        
+
         $cidade->find();
 
         while ($cidade->fetch()) {
@@ -64,8 +63,11 @@ class Cidade extends DB_DataObject
             $tpl->setVariable('ID', $cidade->id);
             $tpl->setVariable('NOME', 'cidade');
             $tpl->setVariable('VALOR', $cidade->nome);
-            $tpl->setVariable('SELECTED', $cidade->id == $ID ? 'selected="selected"' : '');
-
+            
+            if ($ID) {
+                $tpl->setVariable('SELECTED', $cidade->id == $ID ? 'selected="selected"' : '');
+            }
+            
             $tpl->parse('option');
         }
 
@@ -211,4 +213,3 @@ class Cidade extends DB_DataObject
     }
 
 }
-
